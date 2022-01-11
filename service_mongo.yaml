@@ -5,10 +5,9 @@ metadata:
   labels:
     app.kubernetes.io/name: mongo
     app.kubernetes.io/component: backend
-  annotations:
-    external-dns.alpha.kubernetes.io/hostname: base.mongo.com
-    external-dns.alpha.kubernetes.io/ttl: "30"
 spec:
+  rules:
+    - host: "mongo.base" 
   type: LoadBalancer
   ports:
   - port: 27017
