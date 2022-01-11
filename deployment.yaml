@@ -17,7 +17,7 @@ spec:
         app.kubernetes.io/name: mongo
         app.kubernetes.io/component: backend
     spec:
-      hostname: test-1
+      hostname: base-1
       subdomain: default-subdomain
       containers:
         - name: mongo
