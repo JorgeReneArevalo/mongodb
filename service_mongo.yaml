@@ -9,8 +9,6 @@ metadata:
     external-dns.alpha.kubernetes.io/hostname: base.mongo.com
     external-dns.alpha.kubernetes.io/ttl: "30"
 spec:
-  hostname: base-1
-  subdomain: default-subdomain
   type: LoadBalancer
   ports:
   - port: 27017
