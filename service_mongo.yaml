@@ -13,7 +13,7 @@ spec:
   selector:
     app.kubernetes.io/name: mongo
     app.kubernetes.io/component: backend
----
+# ---
 # apiVersion: extensions/v1beta1
 # kind: Ingress
 # metadata:
@@ -28,23 +28,6 @@ spec:
 #     serviceName: mongo
 #     servicePort: 27017
 
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: mongo
-  annotations:
-    kubernetes.io/ingress.class: mongo
-    argocd.argoproj.io/sync-options: Validate=false
-spec:
-  rules:
-  - host: mongo.example.com
-    http:
-      paths:
-      - backend:
-          serviceName: mongo
-          servicePort: 27017
-        path: /
 # ---
 # apiVersion: networking.k8s.io/v1
 # kind: Ingress
@@ -52,25 +35,42 @@ spec:
 #   name: mongo
 #   annotations:
 #     kubernetes.io/ingress.class: mongo
+#     argocd.argoproj.io/sync-options: Validate=false
 # spec:
 #   rules:
-#   - host: helmpixelrobots1.az.pixelrobots.co.uk
+#   - host: mongo.example.com
 #     http:
 #       paths:
-#       - path: /
-#         pathType: ImplementationSpecific
-#         backend:
-#           service:
-#              name: mongo
-#              port: 
-#                number: 27017
-#   - host: helmpixeldemo1.az.pixelrobots.co.uk
-#     http:
-#       paths:
-#       - path: /
-#         pathType: ImplementationSpecific
-#         backend:
-#           service:
-#              name: mongo
-#              port: 
-#                number: 27017
+#       - backend:
+#           serviceName: mongo
+#           servicePort: 27017
+#         path: /
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mongo
+  annotations:
+    kubernetes.io/ingress.class: mongo
+spec:
+  rules:
+  - host: mongo.example.com
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+             name: mongo
+             port: 
+               number: 27017
+  - host: mongo.example.com
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+             name: mongo
+             port: 
+               number: 27017
