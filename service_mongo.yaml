@@ -5,7 +5,6 @@ metadata:
   labels:
     app.kubernetes.io/name: mongo
     app.kubernetes.io/component: backend
-  namespace: mongo
 spec:
   type: LoadBalancer
   ports:
@@ -14,7 +13,7 @@ spec:
   selector:
     app.kubernetes.io/name: mongo
     app.kubernetes.io/component: backend
-# ---
+---
 # apiVersion: extensions/v1beta1
 # kind: Ingress
 # metadata:
