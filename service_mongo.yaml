@@ -6,8 +6,6 @@ metadata:
     app.kubernetes.io/name: mongo
     app.kubernetes.io/component: backend
   namespace: mongo
-  annotations:
-    external-dns.alpha.kubernetes.io/hostname: wp.aws101.org
 spec:
   type: LoadBalancer
   ports:
