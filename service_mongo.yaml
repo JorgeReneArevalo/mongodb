@@ -27,6 +27,7 @@ spec:
 #   backend:
 #     serviceName: mongo
 #     servicePort: 27017
+
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -36,23 +37,39 @@ metadata:
     kubernetes.io/ingress.class: mongo
 spec:
   rules:
-  - host: helmpixelrobots1.az.pixelrobots.co.uk
+  - host: mongo.example.com
     http:
       paths:
-      - path: /
-        pathType: ImplementationSpecific
-        backend:
-          service:
-             name: mongo
-             port: 
-               number: 27017
-  - host: helmpixeldemo1.az.pixelrobots.co.uk
-    http:
-      paths:
-      - path: /
-        pathType: ImplementationSpecific
-        backend:
-          service:
-             name: mongo
-             port: 
-               number: 27017
+      - backend:
+          serviceName: mongo
+          servicePort: 27017
+        path: /
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: mongo
+#   annotations:
+#     kubernetes.io/ingress.class: mongo
+# spec:
+#   rules:
+#   - host: helmpixelrobots1.az.pixelrobots.co.uk
+#     http:
+#       paths:
+#       - path: /
+#         pathType: ImplementationSpecific
+#         backend:
+#           service:
+#              name: mongo
+#              port: 
+#                number: 27017
+#   - host: helmpixeldemo1.az.pixelrobots.co.uk
+#     http:
+#       paths:
+#       - path: /
+#         pathType: ImplementationSpecific
+#         backend:
+#           service:
+#              name: mongo
+#              port: 
+#                number: 27017
