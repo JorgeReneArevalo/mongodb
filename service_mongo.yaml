@@ -5,6 +5,9 @@ metadata:
   labels:
     app.kubernetes.io/name: mongo
     app.kubernetes.io/component: backend
+  namespace: mongo
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: wp.aws101.org
 spec:
   type: LoadBalancer
   ports:
@@ -13,17 +16,46 @@ spec:
   selector:
     app.kubernetes.io/name: mongo
     app.kubernetes.io/component: backend
+# ---
+# apiVersion: extensions/v1beta1
+# kind: Ingress
+# metadata:
+#   name: mongo
+# # this is where you you add your reserved ip
+#   annotations:
+#     kubernetes.io/ingress.global-static-ip-name: mongo-ip 
+#   labels:
+#     app: mongo
+# spec:
+#   backend:
+#     serviceName: mongo
+#     servicePort: 27017
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: mongo
-# this is where you you add your reserved ip
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: mongo-ip 
-  labels:
-    app: mongo
+    kubernetes.io/ingress.class: mongo
 spec:
-  backend:
-    serviceName: mongo
-    servicePort: 27017
+  rules:
+  - host: helmpixelrobots1.az.pixelrobots.co.uk
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+             name: mongo
+             port: 
+               number: 27017
+  - host: helmpixeldemo1.az.pixelrobots.co.uk
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+             name: mongo
+             port: 
+               number: 27017
