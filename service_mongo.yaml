@@ -6,7 +6,8 @@ metadata:
     app.kubernetes.io/name: mongo
     app.kubernetes.io/component: backend
 spec:
-  type: LoadBalancer
+  type: ExternalName
+  externalName: mongo.amordemaria.com
   ports:
   - port: 27017
     targetPort: 27017
@@ -46,31 +47,31 @@ spec:
 #           servicePort: 27017
 #         path: /
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: mongo
-  annotations:
-    kubernetes.io/ingress.class: mongo
-spec:
-  rules:
-  - host: mongo.example.com
-    http:
-      paths:
-      - path: /
-        pathType: ImplementationSpecific
-        backend:
-          service:
-             name: mongo
-             port: 
-               number: 27017
-  - host: mongo.example.com
-    http:
-      paths:
-      - path: /
-        pathType: ImplementationSpecific
-        backend:
-          service:
-             name: mongo
-             port: 
-               number: 27017
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: mongo
+#   annotations:
+#     kubernetes.io/ingress.class: mongo
+# spec:
+#   rules:
+#   - host: mongo.example.com
+#     http:
+#       paths:
+#       - path: /
+#         pathType: ImplementationSpecific
+#         backend:
+#           service:
+#              name: mongo
+#              port: 
+#                number: 27017
+#   - host: mongo.example.com
+#     http:
+#       paths:
+#       - path: /
+#         pathType: ImplementationSpecific
+#         backend:
+#           service:
+#              name: mongo
+#              port: 
+#                number: 27017
