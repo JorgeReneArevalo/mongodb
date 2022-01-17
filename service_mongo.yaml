@@ -32,8 +32,10 @@ spec:
       paths:
       - path: "/"
         backend:
-          serviceName: mongo
-          servicePort: 27017
+          service:
+            name: mongo
+            port:
+              number: 27017
 # spec:
 #   rules:
 #   - host: mongo.amordemaria.com
