@@ -5,9 +5,10 @@ metadata:
   labels:
     app.kubernetes.io/name: mongo
     app.kubernetes.io/component: backend
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: mongo.amordemaria.com
 spec:
-  type: ExternalName
-  externalName: mongo.amordemaria.com
+  type: LoadBalancer
   ports:
   - port: 27017
     targetPort: 27017
