@@ -28,7 +28,7 @@ spec:
   - host: mongo.amordemaria.com
     http:
       paths:
-      - path: /
+      - path: /testpath
         backend:
           service:
               name: mongo-svc
