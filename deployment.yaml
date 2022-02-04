@@ -34,4 +34,10 @@ spec:
               memory: 100Mi
           ports:
             - containerPort: 27017
-      
+          # volumeMounts:
+          #   - name: mongodb
+          #     mountPath: /var/lib/mongodb/
+          # volumes:
+          #   - name: mongo
+          #     persistentVolumeClaim:
+          #     claimName: mongodb-pvc
